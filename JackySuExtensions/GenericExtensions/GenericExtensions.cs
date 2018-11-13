@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿using JackySuExtensions.TypeExtensions;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace JackySuExtensions.GenericExtensions
 {
@@ -12,16 +15,19 @@ namespace JackySuExtensions.GenericExtensions
                 var value2 = propertyInfo.GetValue(obj2);
                 if ((value != null && value2 == null) || (value == null && value2 != null))
                     return false;
-                if (!propertyInfo.PropertyType.IsValueType && propertyInfo.PropertyType != typeof(string))
+                //Func<Type, bool> CheckIsImplementIEquatable = 
+                //    (type) => 
+                //    type.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEquatable<>));
+                if (propertyInfo.PropertyType.IsImplementGenericInterface(typeof(IEquatable<>)))
                 {
-                    if (!EqualsExt(value, value2))
+                    if (!value.Equals(value2))
                     {
                         return false;
                     }
                 }
                 else
                 {
-                    if (!value.Equals(value2))
+                    if (!EqualsExt(value, value2))
                     {
                         return false;
                     }
