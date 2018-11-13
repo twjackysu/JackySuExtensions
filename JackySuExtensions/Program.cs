@@ -1,4 +1,5 @@
 ﻿using System;
+using JackySuExtensions.GenericExtensionsTestCase;
 
 namespace JackySuExtensions
 {
@@ -6,7 +7,9 @@ namespace JackySuExtensions
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var testCase = new GenericExtensionsTest();
+            testCase.Run();
+            Console.ReadKey();
         }
     }
 }
