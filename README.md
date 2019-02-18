@@ -24,3 +24,12 @@ then
 ```csharp
 bool isImplementIEquatable = typeof(YourClass).IsImplementGenericInterface(typeof(IEquatable<>));
 ```
+---
+You can get the item with the max property from any object that has IEnumerable implementation.
+```csharp
+var yourList = new List<string>() { "12345", "123", "01234", "01", "34" };
+// will get "12345"
+var firstMaxLenItem = yourList.FindFirstMaxPropertyItem(x => x.Length);
+// will get ["12345", "01234"]
+var MaxLenItems = yourList.FindMaxPropertyItems(x => x.Length).ToArray();
+```
