@@ -2,7 +2,7 @@
 
 namespace JPDataExchange.EnumAdvanced.TestSample
 {
-    [AttributeUsage(AttributeTargets.Field)]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     class Description : Attribute
     {
         private string desc { get; set; }

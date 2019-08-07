@@ -12,6 +12,7 @@
         Unpaid_Partial_Ttl_Disability,
         [ReasonSet(LeaveReasons.LEAVE_TYPE_REASON_6_5, LeaveReasons.LEAVE_TYPE_REASON_6_6)]
         [Description("Unpaid Bereavement Leave")]
+        [Description("Unpaid Partial /Ttl Disability")]
         [ReferenceID("LEAVE_OF_ABSENCE_TYPE-6-3")]
         Unpaid_Bereavement_Leave,
         [ReasonSet(LeaveReasons.LEAVE_TYPE_REASON_6_7, LeaveReasons.LEAVE_TYPE_REASON_6_8)]

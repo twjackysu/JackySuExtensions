@@ -20,7 +20,7 @@ namespace JackySuExtensions
             testCase3.Run();
 
             Function fn = new Function();
-            var temp = fn.GetEnumByAttribute<LeaveTypes, Description>(x => x.Any(y => y.ToString().Trim() == "Unpaid Partial /Ttl Disability"));
+            var temp = fn.GetEnumsByAttribute<LeaveTypes, Description>(x => x.Any(y => y.ToString() == "Unpaid Partial /Ttl Disability"));
             Console.ReadKey();
         }
     }
