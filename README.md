@@ -1,4 +1,6 @@
 # JackySuExtensions
+[![NuGet version (JackySuExtensions)](https://img.shields.io/nuget/v/JackySuExtensions.svg?style=flat-square)](https://www.nuget.org/packages/JackySuExtensions/)
+
 MyExtensions
 
 Do you want to compare two objects equal?
