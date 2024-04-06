@@ -1,3 +1,7 @@
+[Back](https://github.com/twjackysu/JackySuExtensions/blob/master/README.md)
+
+# StringExtensions
+
 You can simply encrypt and decrypt string or byte with a key. (Symmetric encryption)
 ```csharp
 using JackySuExtensions.StringExtensions;
