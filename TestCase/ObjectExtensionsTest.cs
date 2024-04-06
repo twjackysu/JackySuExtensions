@@ -1,5 +1,6 @@
 ﻿using JackySuExtensions.ObjectExtensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace JackySuExtensions.ObjectExtensionsTestCase
 {
@@ -96,6 +97,48 @@ namespace JackySuExtensions.ObjectExtensionsTestCase
             test2.SetValue("d1[1][0].e1", 9);
             Assert.AreEqual(test2.d1[1][0].e1, 9);
             Assert.AreEqual(test2.GetValue("d1[1][0].e1"), 9);
+        }
+        [TestMethod]
+        public void ShouldParseComplexObject()
+        {
+            var obj = new
+            {
+                AA = 1,
+                BB = "333",
+                CC = new int[] { 1, 3, 4 },
+                DD = new
+                {
+                    EE = 3,
+                    FF = "222",
+                    GG = new int[] { 1, 2, 4 }
+                }
+            };
+
+            Assert.AreEqual("AA=1,BB=333,CC=1,3,4,DD=EE=3,FF=222,GG=1,2,4", obj.ToCacheKey());
+        }
+        [TestMethod]
+        public void ShouldSupportDictionaryObject()
+        {
+            var obj = new
+            {
+                AA = 1,
+                BB = "333",
+                CC = new int[] { 1, 3, 4 },
+                DD = new
+                {
+                    EE = 3,
+                    FF = "222",
+                    GG = new int[] { 1, 2, 4 }
+                }
+            };
+            var myDict = new Dictionary<string, dynamic>
+            {
+                {"apple", 10},
+                {"banana", "yellow"},
+                {"orange", obj}
+            };
+
+            Assert.AreEqual("apple=10,banana=yellow,orange=AA=1,BB=333,CC=1,3,4,DD=EE=3,FF=222,GG=1,2,4", myDict.ToCacheKey());
         }
     }
     public class A

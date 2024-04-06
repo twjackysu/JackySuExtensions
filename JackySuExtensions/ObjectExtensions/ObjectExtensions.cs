@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace JackySuExtensions.ObjectExtensions
 {
@@ -127,6 +127,55 @@ namespace JackySuExtensions.ObjectExtensions
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Converts a complex object into a cache key string. It can handle complex objects.
+        /// </summary>
+        /// <param name="obj">The object to be converted into a cache key.</param>
+        /// <returns>A string representing the cache key.</returns>
+        public static string ToCacheKey(this object obj)
+        {
+            if (obj == null)
+            {
+                return "null";
+            }
+
+            var type = obj.GetType();
+            if (type.IsValueType || obj is string)
+            {
+                return obj.ToString();
+            }
+
+            if (obj is Array array)
+            {
+                var arrayParts = new List<string>();
+                foreach (var item in array)
+                {
+                    arrayParts.Add(ToCacheKey(item));
+                }
+                return string.Join(",", arrayParts);
+            }
+
+            if (obj is IDictionary dictionary)
+            {
+                var dictionaryParts = new List<string>();
+                foreach (DictionaryEntry item in dictionary)
+                {
+                    dictionaryParts.Add($"{item.Key}={ToCacheKey(item.Value)}");
+                }
+                return string.Join(",", dictionaryParts);
+            }
+
+            var properties = type.GetProperties();
+            var parts = new List<string>();
+            foreach (var property in properties)
+            {
+                var value = property.GetValue(obj);
+                parts.Add($"{property.Name}={ToCacheKey(value)}");
+            }
+
+            return string.Join(",", parts);
         }
     }
 }
