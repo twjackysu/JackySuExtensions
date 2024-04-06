@@ -18,6 +18,7 @@ yourObject.SetValue("a1[0].b1[1].c1", "WTF");
 ```
 
 ### ToCacheKey
+Get the Cache key (string) from any object
 ```csharp
 var obj = new { Name = "John", Age = 30 };
 string cacheKey = obj.ToCacheKey();
