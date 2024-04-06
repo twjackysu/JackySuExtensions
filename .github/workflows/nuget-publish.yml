@@ -1,8 +1,8 @@
-name: Publish NuGet package
+name: Publish to NuGet
 on:
   push:
-    branches:
-    - master
+    tags:
+      - 'v*'
   workflow_dispatch:
 env:
   CONFIGURATION: Release
